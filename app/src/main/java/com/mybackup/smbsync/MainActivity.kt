@@ -74,7 +74,9 @@ class MainActivity : ComponentActivity() {
                 val notificationPermissionLauncher = rememberLauncherForActivityResult(
                     contract = androidx.activity.result.contract.ActivityResultContracts.RequestPermission()
                 ) { isGranted ->
-                    android.util.Log.d("MainActivity", "Notification permission granted: $isGranted")
+                    if (com.mybackup.smbsync.BuildConfig.DEBUG) {
+                        android.util.Log.d("MainActivity", "Notification permission granted: $isGranted")
+                    }
                 }
                 
                 LaunchedEffect(Unit) {
@@ -84,7 +86,9 @@ class MainActivity : ComponentActivity() {
                     ) == android.content.pm.PackageManager.PERMISSION_GRANTED
                     
                     if (!hasPermission) {
-                        android.util.Log.d("MainActivity", "Requesting notification permission")
+                        if (com.mybackup.smbsync.BuildConfig.DEBUG) {
+                            android.util.Log.d("MainActivity", "Requesting notification permission")
+                        }
                         notificationPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
                     }
                 }

@@ -75,7 +75,7 @@ class SmbDiscoveryService @Inject constructor() {
                 }
             }
         } catch (e: Exception) {
-            e.printStackTrace()
+            // e.printStackTrace()
         }
     }.flowOn(Dispatchers.IO)
 }
