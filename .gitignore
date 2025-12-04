@@ -3,6 +3,8 @@
 *.iml
 .DS_Store
 /build
+app/build/
+.vscode/
 /captures
 .externalNativeBuild
 .cxx
