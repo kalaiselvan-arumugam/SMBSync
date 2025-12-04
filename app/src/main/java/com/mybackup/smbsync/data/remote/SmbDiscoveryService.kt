@@ -19,7 +19,7 @@ class SmbDiscoveryService @Inject constructor() {
     fun discoverServers(): Flow<SmbServer> = flow {
         try {
             val context = SingletonContext.getInstance()
-            val interfaces = java.net.NetworkInterface.getNetworkInterfaces()
+            val interfaces = java.net.NetworkInterface.getNetworkInterfaces() ?: return@flow
             
             for (intf in interfaces) {
                 if (intf.isLoopback || !intf.isUp) continue
