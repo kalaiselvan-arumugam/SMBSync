@@ -57,7 +57,7 @@ class SmbClient(
             if (protocol == "SMB1") {
                 setProperty("jcifs.smb.client.useExtendedSecurity", "false")
                 setProperty("jcifs.smb.lmCompatibility", "0")
-                setProperty("jcifs.smb.client.disablePlainTextPasswords", "false")
+                // setProperty("jcifs.smb.client.disablePlainTextPasswords", "false") // Removed for security
             }
         }
         
@@ -102,7 +102,9 @@ class SmbClient(
             if (!url.endsWith("/")) {
                 url += "/"
             }
-            android.util.Log.d("SmbClient", "Listing files for URL: $url")
+            if (com.mybackup.smbsync.BuildConfig.DEBUG) {
+                android.util.Log.d("SmbClient", "Listing files for URL: $url")
+            }
             val dir = SmbFile(url, context)
             
             if (!dir.exists() || !dir.isDirectory) {
